@@ -19,7 +19,8 @@
         return (
             <ul>
                 {props.list.map((name)=>(
-                    <li key={name}> {name} </li>
+                    <li key={name}> {name} <button onClick = {() => props.onRemoveFriend(name)}>Remove</button> </li>
+                    
                 ))}
             </ul>
         )
@@ -33,11 +34,24 @@
             }
         }
 
+        handleAddFriend(){
+
+        }
+
+        handleRemoveFriend(name){
+            this.setState((currentState)=>{
+                return {
+                    friends : currentState.friends.filter((friend) => friend !== name)
+                }
+            } )
+
+        }
+
         render(){
-          //  const friends = ['Jordn','Ram','Mohan']
             return (
                 <div>
-                    <FriendsList list = {this.state.friends}/>
+                    <FriendsList list = {this.state.friends} onRemoveFriend = {this.handleRemoveFriend}  />
+
                 </div>
             )
         }
